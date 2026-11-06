@@ -10,13 +10,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("API de produtos funcionando");
-});
-
 app.use("/produtos", produtoRoutes);
 app.use("/clientes", clienteRoutes);
 
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
-});
+module.exports = app;
+
+if (process.env.NODE_ENV !== "test") {
+    app.listen(3000, () => {
+        console.log("Servidor rodando na porta 3000")
+    });
+}
